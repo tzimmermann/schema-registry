@@ -1,0 +1,19 @@
+# url: http://localhost:4002/graphql?env=production
+
+  directive @key(selectionSet: String!) on OBJECT
+directive @computed(selectionSet: String!) on FIELD_DEFINITION
+directive @merge(argsExpr: String, keyArg: String, keyField: String, key: [String!], additionalArgs: String) on FIELD_DEFINITION
+directive @canonical on OBJECT | INTERFACE | INPUT_OBJECT | UNION | ENUM | SCALAR | FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+  type Product {
+  upc: ID!
+  name: String!
+  price: Int!
+  weight: Int!
+}
+
+type Query {
+  topProducts(first: Int = 2): [Product]!
+  products(upcs: [ID!]!): [Product]! @merge(keyField: "upc")
+  _sdl: String!
+}
+
