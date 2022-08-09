@@ -9,6 +9,7 @@ directive @canonical on OBJECT | INTERFACE | INPUT_OBJECT | UNION | ENUM | SCALA
   name: String!
   price: Int!
   weight: Int!
+  dummy: String
 }
 
 type Query {
